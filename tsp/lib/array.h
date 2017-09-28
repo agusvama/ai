@@ -14,3 +14,13 @@ void printArray(int x[], int size){
   }
   printf("\n");
 }
+
+bool includes(int x[], int element, int arraySize){
+  for(int i = 0; i < arraySize; i++){
+    if(x[i] == element){
+      return true;
+    }else{
+      continue;
+    }
+  }return false;
+}
