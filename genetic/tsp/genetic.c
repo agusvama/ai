@@ -50,6 +50,41 @@ void merge(int x[], int y[], int persist, int a[], int b[]){
   mergeNoPersisting(b, x, persist);
 }
 
+void mutate(int x[]){
+  int aux = x[2];
+  x[2] = x[3];
+  x[3] = aux;
+}
+
+void copyArray(int x[], int y[], int arrSize){
+  for(int i = 0; i < arrSize; i++){
+    y[i] = x[i];
+  }
+}
+
+void newPopulation(){
+  for(int i = 0; i < PARENTS; i++){
+    int m = rand() % 10;
+    if(m <= 4){
+      mutate(children[i]);
+    }else{
+      continue;
+    }
+  }
+}
+
+int distance(int x, int y){
+  return matrix[x][y];
+}
+
+int fitness(int x[]){
+  int total = 0;
+  for(int i = 0; i < NODES; i++){
+    total = total + distance(x[i], x[i + 1]);
+  }
+  return total;
+};
+
 int main(){
   //creating solution
   for(int i = 0; i < PARENTS; i++){
@@ -61,16 +96,8 @@ int main(){
     merge(parents[i], parents[i + 1], 2, children[i], children[i + 1]);
   }
 
-  //printing results
-  for(int i = 0; i < PARENTS; i = i + 2){
-    puts("\nparents");
-    printArray(parents[i], NODES);
-    printArray(parents[i + 1], NODES);
-
-    puts("\nchildren");
-    /* printf("child: %d\n", i); */
-    printArray(children[i], NODES);
-    /* printf("child: %d\n", i + 1); */
-    printArray(children[i + 1], NODES);
-  }
+  //aplying mutation
+  newPopulation();
+  printArray(parents[0], NODES);
+  printf("fitness of parent[0] is %d", fitness(parents[0]));
 }
