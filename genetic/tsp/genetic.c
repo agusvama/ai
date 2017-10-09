@@ -1,13 +1,14 @@
 #include <stdlib.h>
 #include "lib/array.h"
 #include "lib/variables.h"
+#include "lib/number.h"
 
 void setFromTo(int x[], int s){
   x[0] = s;
   x[NODES - 1] = s;
 }
 
-void createSolution(int x[], int startNode){
+void createParents(int x[], int startNode){
   if(startNode == 0){
     startNode = 1;
   }
@@ -56,13 +57,7 @@ void mutate(int x[]){
   x[3] = aux;
 }
 
-void copyArray(int x[], int y[], int arrSize){
-  for(int i = 0; i < arrSize; i++){
-    y[i] = x[i];
-  }
-}
-
-void newPopulation(){
+void mutateChildren(){
   for(int i = 0; i < PARENTS; i++){
     int m = rand() % 10;
     if(m <= 4){
@@ -86,9 +81,9 @@ int fitness(int x[]){
 };
 
 int main(){
-  //creating solution
+  //creating parents
   for(int i = 0; i < PARENTS; i++){
-    createSolution(parents[i], 1);
+    createParents(parents[i], 1);
   }
 
   //merging
@@ -97,7 +92,14 @@ int main(){
   }
 
   //aplying mutation
-  newPopulation();
+  mutateChildren();
+  
+  //testing, attention please, feel the tension...
   printArray(parents[0], NODES);
-  printf("fitness of parent[0] is %d", fitness(parents[0]));
+  printf("fitness of parent[0] is %d\n", fitness(parents[0]));
+
+  printArray(children[0], NODES);
+  printf("fitness of child[0] is %d\n", fitness(children[0]));
+
+  printf("The best fitness is %d\n", min( fitness(parents[0]), fitness(children[0]) ));
 }

@@ -31,3 +31,9 @@ void clearArrayWith(int x[], int element, int arraySize){
     x[i] = element;
   }
 }
+
+void copyArray(int x[], int y[], int arrSize){
+  for(int i = 0; i < arrSize; i++){
+    y[i] = x[i];
+  }
+}
