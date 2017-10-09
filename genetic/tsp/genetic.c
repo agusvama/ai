@@ -93,13 +93,28 @@ int main(){
 
   //aplying mutation
   mutateChildren();
+
+  //comparing and creating a new population
+  for(int i = 0; i < PARENTS; i++){
+    //take the minor fitness and keep it in the new population 
+    if(fitness(parents[i]) < fitness(children[i]) ){
+      copyArray(parents[i], results[i], NODES);
+    }else{
+      copyArray(children[i], results[i], NODES);
+    }
+  }
   
   //testing, attention please, feel the tension...
-  printArray(parents[0], NODES);
-  printf("fitness of parent[0] is %d\n", fitness(parents[0]));
+  for(int i = 0; i < PARENTS; i++){
+    printf("parent [%d] fitness: %d\n", i, fitness(parents[i]));
+    printArray(parents[i], NODES);
 
-  printArray(children[0], NODES);
-  printf("fitness of child[0] is %d\n", fitness(children[0]));
+    printf("child [%d] fitness: %d\n", i, fitness(children[i]));
+    printArray(children[i], NODES);
 
-  printf("The best fitness is %d\n", min( fitness(parents[0]), fitness(children[0]) ));
+    printf("result [%d]\n", i);
+    printArray(results[i], NODES);
+
+    puts("");
+  }
 }
