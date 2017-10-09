@@ -9,6 +9,7 @@ int matrix [5][5] = {
 
 int NODES = 5;
 int PARENTS = 10;
+int GENERATIONS = 10;
 
 //parents
 int parents[10][5] = {

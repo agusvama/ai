@@ -86,35 +86,44 @@ int main(){
     createParents(parents[i], 1);
   }
 
-  //merging
-  for(int i = 0; i < PARENTS; i = i + 2){
-    merge(parents[i], parents[i + 1], 2, children[i], children[i + 1]);
-  }
-
-  //aplying mutation
-  mutateChildren();
-
-  //comparing and creating a new population
-  for(int i = 0; i < PARENTS; i++){
-    //take the minor fitness and keep it in the new population 
-    if(fitness(parents[i]) < fitness(children[i]) ){
-      copyArray(parents[i], results[i], NODES);
-    }else{
-      copyArray(children[i], results[i], NODES);
+  for(int i = 1; i <= GENERATIONS; i++){
+    printf("GENERATION: %d\n", i);
+    //merging
+    for(int i = 0; i < PARENTS; i = i + 2){
+      merge(parents[i], parents[i + 1], 2, children[i], children[i + 1]);
     }
+
+    //applying mutation
+    mutateChildren();
+    
+    //comparing and creating a new population
+    for(int i = 0; i < PARENTS; i++){
+      //take the minor fitness and keep it in the new population 
+      if(fitness(parents[i]) < fitness(children[i]) ){
+        copyArray(parents[i], results[i], NODES);
+      }else{
+        copyArray(children[i], results[i], NODES);
+      }
+    }
+
+    //testing, attention please, feel the tension...
+    for(int i = 0; i < PARENTS; i++){
+      /* printf("parent [%d] fitness: %d\n", i, fitness(parents[i])); */
+      /* printArray(parents[i], NODES); */
+      /*  */
+      /* printf("child [%d] fitness: %d\n", i, fitness(children[i])); */
+      /* printArray(children[i], NODES); */
+
+      printf("result [%d] fitness: %d\n", i, fitness(results[i]));
+      printArray(results[i], NODES);
+    }
+
+      //now the results become the new parents
+      for(int i = 0; i < PARENTS; i++){
+        copyArray(results[i], parents[i], NODES);
+      }
+
+    puts("--------------------------------------------------------------------------");
   }
-  
-  //testing, attention please, feel the tension...
-  for(int i = 0; i < PARENTS; i++){
-    printf("parent [%d] fitness: %d\n", i, fitness(parents[i]));
-    printArray(parents[i], NODES);
 
-    printf("child [%d] fitness: %d\n", i, fitness(children[i]));
-    printArray(children[i], NODES);
-
-    printf("result [%d]\n", i);
-    printArray(results[i], NODES);
-
-    puts("");
-  }
 }
