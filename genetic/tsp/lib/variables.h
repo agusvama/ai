@@ -18,13 +18,15 @@ int matrix[12][12] = {
 };
 
 int NODES = 12; // NODES = cities + 1, because you travel back to start node
-int PARENTS = 10000; // individuals
-int GENERATIONS = 10000;
+int PARENTS = 7000; // individuals
+int GENERATIONS = 7000;
 
 //parents
-int parents[10000][12] = { };
+int parents[7000][12] = { };
 
 //children
-int children[10000][12] = { };
+int children[7000][12] = { };
 
-int results[10000][12] = { };
+int results[7000][12] = { };
+
+int finals[7000] = { };

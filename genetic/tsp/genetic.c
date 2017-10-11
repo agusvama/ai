@@ -86,7 +86,21 @@ int fitness(int x[]){
 void printGeneration(int generation, int index){
   printf("result: %d fitness: %d\n", index, fitness(results[index]));
   printArray(results[index], NODES);
- }
+}
+
+int lowestFitness(){
+  int actual = finals[0];
+  int index = 0;
+  for(int i = 1; i < PARENTS; i++){
+    if(finals[i] < actual){
+      actual = finals[i];
+      index = i;
+    }else{
+      continue;
+    }
+  }
+  return index;
+}
 
 int main(){
   //creating parents
@@ -122,14 +136,14 @@ int main(){
     }
 
   }//GENERATIONS
-
-  //print last results...
-  puts("--------------------------HERE----------------------------------------------------");
+  
   for(int i = 0; i < PARENTS; i++){
-    printf("result[%d] fitness: %d\n", i, fitness(results[i]));
-    printArray(results[i], NODES);
+    finals[i] = fitness(results[i]);
   }
 
+  printArray(results[lowestFitness()], NODES);
+  printf("fitness: %d\n", fitness(results[lowestFitness()]));
+  
   end = clock();
   printf("Elapsed time: %f seconds\n", ((double) (end - start)) / CLOCKS_PER_SEC);
 }
