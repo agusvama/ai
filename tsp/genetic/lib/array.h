@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdbool.h>
 
 int first(int x[]){
   return x[0];
@@ -23,4 +24,16 @@ bool includes(int x[], int element, int arraySize){
       continue;
     }
   }return false;
+}
+
+void clearArrayWith(int x[], int element, int arraySize){
+  for(int i = 0; i < arraySize; i++){
+    x[i] = element;
+  }
+}
+
+void copyArray(int x[], int y[], int arrSize){
+  for(int i = 0; i < arrSize; i++){
+    y[i] = x[i];
+  }
 }
