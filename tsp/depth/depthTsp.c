@@ -1,37 +1,32 @@
 #include <stdio.h>
 #include "lib/array.h"
 #include "lib/variables.h"
-#include "lib/matrixFunctions.h"
 
-int visited[12] = {};
+int route[12] = {};
 int DEPTH = 11;
 
-void recursive(int actual, int next, int depth){
+int fillingIt(int actual, int depth, int x[]){
   if(depth == DEPTH){
-    if(canTravel(actual, 1)){ //magic number for end node, same as start node
-      visited[depth] = 1;
-      /* printf("final: -> "); */
-      /* printArray(visited, NODES); */
-      return;
-    }  
+    x[depth] = 1; //magic number for the end node
+    return 1;
+  }else{
+    x[depth] = actual;
+    return fillingIt(actual, depth + 1, x);
   }
-  if(canTravel(actual, next)){
-    if(includes(visited, next, NODES)){ //next node visited already
-      recursive(actual, next + 1, depth); 
-      return;
-    }else{ //next node not visited yet
-      visited[depth] = actual;
-      printArray(visited, NODES);
-      recursive(next, 1, depth + 1); //magic number for start node
-      return;
-    }
-  }else{ //can't travel
-    recursive(actual, next + 1, depth);
-    return;
+}
+
+int recursive(int actual, int depth, int x[]){
+  printArray(route, NODES);
+  if(depth == DEPTH){
+    return 1;
+  }
+  if(countElement(x, actual, NODES) > 1){
+    fillingIt(actual + 1, depth, x);
+    return recursive(actual + 1, depth + 1, x);
   }
 }
 
 int main(){
-  recursive(1, 1, 0);
-  printArray(visited, NODES);
+  recursive(0, 0, route);
+  printArray(route, NODES);
 }

@@ -37,3 +37,13 @@ void copyArray(int x[], int y[], int arrSize){
     y[i] = x[i];
   }
 }
+
+int countElement(int x[], int element, int arraySize){
+  int counter = 0;
+  for(int i = 0; i < arraySize; i++){
+    if(x[i] == element){
+      counter = counter + 1;
+    }
+  }
+  return counter;
+}
