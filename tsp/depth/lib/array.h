@@ -20,10 +20,9 @@ bool includes(int x[], int element, int arraySize){
   for(int i = 0; i < arraySize; i++){
     if(x[i] == element){
       return true;
-    }else{
-      continue;
     }
-  }return false;
+  }
+  return false;
 }
 
 void clearArrayWith(int x[], int element, int arraySize){
