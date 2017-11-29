@@ -1,6 +1,6 @@
 #include <stdio.h>
-#include "../../lib/array.h"
-#include "../../lib/number.h"
+#include "../lib/array.h"
+#include "../lib/number.h"
 
 int patterns [4][3]= {
   {0, 0, 0},

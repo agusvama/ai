@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <time.h>
-#include "lib/array.h"
-#include "lib/variables.h"
+#include "../../lib/array.h"
+#include "variables.h"
 
 int route[12];
 int visited[12];

@@ -1,8 +1,8 @@
 #include <stdlib.h>
 #include <time.h>
-#include "lib/array.h"
-#include "lib/variables.h"
-#include "lib/number.h"
+#include "../../lib/array.h"
+#include "../../lib/number.h"
+#include "variables.h"
 
 void setFromTo(int x[], int s){
   x[0] = s;

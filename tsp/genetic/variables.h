@@ -19,7 +19,7 @@ int matrix[12][12] = {
 
 int NODES = 12; // NODES = cities + 1, because you travel back to start node
 int PARENTS = 7000; // individuals
-int GENERATIONS = 7000;
+int GENERATIONS = 100;
 
 //parents
 int parents[7000][12] = { };
